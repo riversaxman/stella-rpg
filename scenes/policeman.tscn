@@ -1,5 +1,6 @@
-[gd_scene load_steps=35 format=3 uid="uid://brfpyfh1oivce"]
+[gd_scene load_steps=38 format=3 uid="uid://brfpyfh1oivce"]
 
+[ext_resource type="Script" uid="uid://bebw7cekdu4ft" path="res://scripts/policeman.gd" id="1_2q8bx"]
 [ext_resource type="Texture2D" uid="uid://bqmbwxncjit75" path="res://art/characters/policeman_shadow.png" id="1_n441t"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2q8bx"]
@@ -269,11 +270,29 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_n441t"]
+radius = 48.507732
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[sub_resource type="CircleShape2D" id="CircleShape2D_2q8bx"]
+radius = 8.0
+
+[node name="policeman" type="CharacterBody2D"]
+script = ExtResource("1_2q8bx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_etj0j")
-animation = &"back_walk"
-frame_progress = 0.34462714
+animation = &"front_idle"
+offset = Vector2(0, -12)
+
+[node name="detection_area" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area"]
+shape = SubResource("CircleShape2D_n441t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2q8bx")
+
+[connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]

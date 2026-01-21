@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 100.0
+@export var speed = 100
 var current_direction = "none"
 
 func _ready() -> void:
@@ -13,23 +13,23 @@ func player_movement(delta: float) -> void:
 	if Input.is_action_pressed("ui_right"):
 		current_direction = "right"
 		play_animation(1)
-		velocity.x = SPEED
+		velocity.x = speed
 		velocity.y = 0
 	elif Input.is_action_pressed("ui_left"):
 		current_direction = "left"
 		play_animation(1)
-		velocity.x = -SPEED
+		velocity.x = -speed
 		velocity.y = 0
 	elif Input.is_action_pressed("ui_down"):
 		current_direction = "down"
 		play_animation(1)
 		velocity.x = 0
-		velocity.y = SPEED
+		velocity.y = speed
 	elif Input.is_action_pressed("ui_up"):
 		current_direction = "up"
 		play_animation(1)
 		velocity.x = 0
-		velocity.y = -SPEED
+		velocity.y = -speed
 	else:
 		play_animation(0)
 		velocity.x = 0
