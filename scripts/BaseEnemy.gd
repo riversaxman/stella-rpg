@@ -13,7 +13,7 @@ class_name BaseEnemy
 
 var chase_player: bool = false
 # player object that enemy is currently interacting with
-var player = null  
+var player: Node2D = null  
 # direction of character animation
 var current_direction: String = "front"
 var health: int
@@ -28,7 +28,7 @@ func _ready() -> void:
 	agent.target_desired_distance = target_desired_distance
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	deal_damage()
 	update_health()
 	
@@ -83,6 +83,7 @@ func _play_idle_animation() -> void:
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	if not body.is_in_group("player"):
 		return
+
 	player = body
 	chase_player = true
 
@@ -90,6 +91,7 @@ func _on_detection_area_body_entered(body: Node2D) -> void:
 func _on_detection_area_body_exited(body: Node2D) -> void:
 	if body != player:
 		return
+
 	player = null
 	chase_player = false
 
@@ -117,6 +119,7 @@ func deal_damage() -> void:
 			$take_damage_cooldown.start()
 			can_take_damage = false
 			print("enemy_health: ", health)
+
 			if health <= 0:
 				die()
 
@@ -131,11 +134,10 @@ func _on_take_damage_cooldown_timeout() -> void:
 
 func update_health() -> void:
 	#todo simplify this
-	var health_bar = $health_bar
-	health_bar.value = health
+	$health_bar.value = health
 	
 	if health == max_health:
-		health_bar.visible = false
+		$health_bar.visible = false
 	else:
-		health_bar.visible = true
+		$health_bar.visible = true
 	

@@ -383,6 +383,7 @@ wait_time = 0.5
 [node name="Camera2D" type="Camera2D" parent="."]
 visible = false
 zoom = Vector2(2, 2)
+limit_enabled = false
 limit_left = 0
 limit_top = 0
 limit_right = 500

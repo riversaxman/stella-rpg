@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://4ihcb5n08owx" path="res://scripts/BaseEnemy.gd" id="1_vaaym"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8fkgw"]
-radius = 61.03278
+radius = 70.00714
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vaaym"]
 radius = 5.0

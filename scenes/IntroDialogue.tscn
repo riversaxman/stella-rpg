@@ -1,0 +1,67 @@
+[gd_scene load_steps=3 format=3 uid="uid://bp03ekk3k2qho"]
+
+[ext_resource type="Script" uid="uid://c14uenw4y50ov" path="res://scenes/intro_dialogue.gd" id="1_go08a"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_u7qvr"]
+font_size = 14
+
+[node name="IntroDialogue" type="CanvasLayer"]
+script = ExtResource("1_go08a")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.30980393, 0.30980393, 0.30980393, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="Control/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control/ColorRect/CenterContainer"]
+custom_minimum_size = Vector2(400, 300)
+layout_mode = 2
+color = Color(0.007843138, 0.5882353, 0.654902, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Control/ColorRect/CenterContainer"]
+custom_minimum_size = Vector2(394, 294)
+layout_mode = 2
+color = Color(0.30980393, 0.30980393, 0.30980393, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/ColorRect/CenterContainer"]
+layout_mode = 2
+
+[node name="IntroText" type="Label" parent="Control/ColorRect/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "ReallyEvil, Inc. has recently purchased most of
+the land around an indigenous village, land 
+where the villagers have foraged for hundreds 
+of years. Now, it’s illegal for them to forage, 
+and the villagers are going hungry.
+
+Taner, one of the villagers, has journeyed from
+their home to stop ReallyEvil, Inc. from 
+destroying their lands.
+"
+label_settings = SubResource("LabelSettings_u7qvr")
+
+[node name="ContinueButton" type="Button" parent="Control/ColorRect/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Continue"
+
+[connection signal="pressed" from="Control/ColorRect/CenterContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]

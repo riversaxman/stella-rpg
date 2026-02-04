@@ -276,3 +276,12 @@ animations = [{
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_cat8b")
 animation = &"back_walk"
+
+[node name="detection_area" parent="." index="1"]
+visible = true
+
+[node name="CollisionShape2D" parent="detection_area" index="0"]
+visible = true
+
+[node name="CollisionShape2D" parent="." index="2"]
+visible = true
